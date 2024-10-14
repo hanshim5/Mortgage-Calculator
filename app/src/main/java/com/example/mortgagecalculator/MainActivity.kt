@@ -11,37 +11,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.mortgagecalculator.data.Mortgage
+import com.example.mortgagecalculator.ui.theme.DoneScreen
+import com.example.mortgagecalculator.ui.theme.ModifyScreen
 import com.example.mortgagecalculator.ui.theme.MortgageCalculatorTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            MortgageCalculatorTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            setContent {
+            MortgageScreen()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    MortgageCalculatorTheme {
-        Greeting("Android")
+fun MortgageScreen() {
+    val navController = rememberNavController()
+    val mortgageViewModel: Mortgage = viewModel()
+    NavHost(
+        navController = navController,
+        startDestination = "summary"
+    ) {
+        composable("summary") {
+            DoneScreen(viewModel = mortgageViewModel, navController = navController)
+        }
+        composable("modify") {
+            ModifyScreen(viewModel = mortgageViewModel, navController = navController)
+        }
     }
 }

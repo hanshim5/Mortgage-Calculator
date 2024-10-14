@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Mortgage Calculator</string>
+    <string name="amount">Amount</string>
+    <string name="years">Years</string>
+    <string name="interest_rate">Interest Rate</string>
+    <string name="monthly_payment">Monthly Payment</string>
+    <string name="total_payment">Total Payment</string>
+    <string name="modify">Modify Data</string>
+    <string name="ten">10</string>
+    <string name="fifteen">15</string>
+    <string name="thirty">30</string>
+
 </resources>
